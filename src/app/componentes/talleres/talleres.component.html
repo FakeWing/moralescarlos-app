@@ -2,10 +2,11 @@
     <div class="col-md-4 col-lg-4">
         <div class="card bg-dark text-white mt-5">
             <div class="card-header text-center">
-                <h3>Agregar Taller</h3>
+                <h3></h3>
             </div>
             <div class="card-body">
-                <br>
+                <div *ngIf="nuevoTaller">
+                    <br>
                     <input #frm type="hidden" [(ngModel)]="nuevoTaller.numtaller">
 
                     <div class="input-group mb-3">
@@ -34,32 +35,44 @@
                             <label for="cupos" class="frm"><span class="input-group-text">Cupos:</span></label>
                         </div><input id="cupos" class="form-control text-right" [(ngModel)]="nuevoTaller.cupos">
                     </div>
+                    <button *ngIf="btn4" (click)="cancelar()" class="btn btn-outline-info btn-lg float-right ml-2">CANCELAR
+                            </button>
+                    <button *ngIf="btn1" (click)="postTaller()" class="btn btn-outline-info btn-lg float-right">AGREGAR
+                        TALLER</button>
+                    <button *ngIf="btn2"(click)="putTaller(nuevoTaller.numtaller)"
+                        class="btn btn-outline-warning btn-lg float-right">EDITAR TALLER</button>
+                    <button *ngIf="btn3" (click)="deleteTaller(nuevoTaller.numtaller)"
+                        class="btn btn-outline-danger btn-lg float-right">BORRAR TALLER</button>
+                </div>
 
-                    <button (click)="postTaller()" class="btn btn-outline-info btn-lg float-right"
-                       >AGREGAR TALLER</button>
-                 </div>
-            </div>
-    </div>
-            <div class="col-md-8 col-lg-8 ">
-                <table class="table table-striped table-hover table-dark text-white mt-5">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Detalle</th>
-                            <th>Num. Horas</th>
-                            <th>Cupos</th>
-                            <th class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let taller of talleres">
-                            <td>{{taller.nombre}}</td>
-                            <td>{{taller.detalle}}</td>
-                            <td>{{taller.numhoras}}</td>
-                            <td>{{taller.cupos}}</td>
-                            <td class="text-center  "><button class="btn btn-warning btn-lg mx-2"><fa-icon [icon]="faPencil"></fa-icon></button><button class="btn btn-lg btn-danger"><fa-icon [icon]="faTrash"></fa-icon></button></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
+    </div>
+    <div class="col-md-8 col-lg-8 ">
+        <table class="table table-striped table-hover table-dark text-white mt-5">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Detalle</th>
+                    <th>Num. Horas</th>
+                    <th>Cupos</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let taller of talleres">
+                    <td>{{taller.nombre}}</td>
+                    <td>{{taller.detalle}}</td>
+                    <td>{{taller.numhoras}}</td>
+                    <td>{{taller.cupos}}</td>
+                    <td class="text-center"><button (click)="editarTaller(taller.numtaller)"
+                            class="btn btn-warning btn-lg mx-2">
+                            <fa-icon [icon]="faPencil"></fa-icon>
+                        </button><button (click)="borrarTaller(taller.numtaller)" class="btn btn-lg btn-danger">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

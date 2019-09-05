@@ -29,4 +29,13 @@ export class ApiserviciosService {
   public postTaller(taller:TalleresInterface): Observable<TalleresInterface>{
     return this.http.post<TalleresInterface>(this.talleresURL, taller, this.httpOptions);
   }
+
+  public deleteTaller(id:number):Observable<TalleresInterface>{
+    return this.http.delete<TalleresInterface>(this.talleresURL+id);
+  }
+  
+  public putLibro(id: number, taller: TalleresInterface): Observable<TalleresInterface> {
+    return this.http.put<TalleresInterface>(this.talleresURL + id, taller, this.httpOptions);
+
+  }
 }
