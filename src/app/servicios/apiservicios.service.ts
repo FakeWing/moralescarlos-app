@@ -26,4 +26,7 @@ export class ApiserviciosService {
     return this.http.get(this.talleresURL);
   }
 
+  public postTaller(taller:TalleresInterface): Observable<TalleresInterface>{
+    return this.http.post<TalleresInterface>(this.talleresURL, taller, this.httpOptions);
+  }
 }

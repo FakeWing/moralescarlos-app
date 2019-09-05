@@ -8,8 +8,8 @@ import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./talleres.component.css']
 })
 export class TalleresComponent implements OnInit {
-
-  public taller: TalleresInterface; //singular
+  public nuevoTaller = new TalleresClase;
+  public taller:  TalleresInterface; //singular
   public talleres: TalleresInterface; //plural
   faPencil=faPencilAlt;
   faTrash=faTrash;
@@ -18,7 +18,7 @@ export class TalleresComponent implements OnInit {
 
   ngOnInit() {
     this.getTalleres();
-    this.getTaller(0);
+    
   }
 
   public getTaller(id: number) {
@@ -31,4 +31,12 @@ export class TalleresComponent implements OnInit {
 
   }
 
+  public postTaller() {
+    var tallerObservable = this.apiServicio.postTaller(this.nuevoTaller);
+    tallerObservable.subscribe(tallerObtenido => {
+      this.nuevoTaller = tallerObtenido;
+      this.getTalleres();
+      this.nuevoTaller= new TalleresClase;
+    });
+  }
 }

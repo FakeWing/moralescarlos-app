@@ -5,43 +5,39 @@
                 <h3>Agregar Taller</h3>
             </div>
             <div class="card-body">
-                
-                    <br>
-                    <input #frm type="hidden" [(ngModel)]="taller.numtaller">
+                <br>
+                    <input #frm type="hidden" [(ngModel)]="nuevoTaller.numtaller">
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label for="nombre" class="frm"><span class="input-group-text">Nombre:</span></label>
-                        </div><input id="nombre" class="form-control text-right" [(ngModel)]="taller.nombre">
+                        </div><input id="nombre" class="form-control text-right" [(ngModel)]="nuevoTaller.nombre">
                     </div>
 
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label for="detalle" class="frm"><span class="input-group-text">Detalle:</span></label>
-                        </div><input id="detalle" class="form-control text-right" [(ngModel)]="taller.detalle">
+                        </div><input id="detalle" class="form-control text-right" [(ngModel)]="nuevoTaller.detalle">
                     </div>
 
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label for="numhoras" class="frm"><span class="input-group-text">Num. Horas:</span></label>
-                        </div><input id="numhoras" class="form-control text-right" [(ngModel)]="taller.numhoras">
+                        </div><input id="numhoras" class="form-control text-right" [(ngModel)]="nuevoTaller.numhoras">
                     </div>
 
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label for="cupos" class="frm"><span class="input-group-text">Cupos:</span></label>
-                        </div><input id="cupos" class="form-control text-right" [(ngModel)]="taller.cupos">
+                        </div><input id="cupos" class="form-control text-right" [(ngModel)]="nuevoTaller.cupos">
                     </div>
 
-                    <button class="btn btn-outline-info btn-lg float-right"
-                       >POST</button>
-
-                
-
-            </div>
+                    <button (click)="postTaller()" class="btn btn-outline-info btn-lg float-right"
+                       >AGREGAR TALLER</button>
+                 </div>
             </div>
     </div>
             <div class="col-md-8 col-lg-8 ">
@@ -62,12 +58,8 @@
                             <td>{{taller.numhoras}}</td>
                             <td>{{taller.cupos}}</td>
                             <td class="text-center  "><button class="btn btn-warning btn-lg mx-2"><fa-icon [icon]="faPencil"></fa-icon></button><button class="btn btn-lg btn-danger"><fa-icon [icon]="faTrash"></fa-icon></button></td>
-
                         </tr>
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
