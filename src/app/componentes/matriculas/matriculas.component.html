@@ -1,1 +1,20 @@
-<p>matriculas works!</p>
+<div *ngIf="talleres">
+        <select class='select-option' [(ngModel)]="selected"
+        (change)='onOptionsSelected($event)'>
+        
+      <option #opt class='option'  *ngFor='let taller of talleres' 
+      [value]="taller.numtaller">{{taller.nombre}}</option>
+
+   </select>
+
+   
+
+</div>
+
+<div *ngIf="selected">
+ <div *ngIf="taller"></div>  
+
+    
+    
+
+</div>
