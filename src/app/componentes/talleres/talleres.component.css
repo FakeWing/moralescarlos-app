@@ -8,3 +8,10 @@ span{
     border-color:black;
     min-width: 120px;
 }
+
+.ff{
+    background-color: gray;
+    font-weight:bolder;
+    pointer-events: none 
+    
+}

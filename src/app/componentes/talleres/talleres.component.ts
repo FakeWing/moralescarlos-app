@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiserviciosService } from 'src/app/servicios/apiservicios.service';
 import { TalleresInterface, TalleresClase } from 'src/app/modelos/talleres';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-talleres',
   templateUrl: './talleres.component.html',
@@ -22,7 +23,7 @@ export class TalleresComponent implements OnInit {
 
   ngOnInit() {
     this.getTalleres();
-
+    document.getElementById("titulo").innerHTML = "Agregar Taller";
 
   }
 
@@ -53,17 +54,20 @@ export class TalleresComponent implements OnInit {
         this.limpiar();
         this.getTalleres();
         this.btn1 = true;
+        document.getElementById("titulo").innerHTML = "Agregar Taller";
 
 
       });
   }
 
   public editarTaller(id: number) {
+    document.getElementById("titulo").innerHTML = "Editar Taller";
     this.limpiar();
     this.btn2 = true;
     this.btn4 = true;
     this.getTaller(id);
-
+    this.removerClase();
+   
   }
 
   public deleteTaller(id: number) {
@@ -73,6 +77,9 @@ export class TalleresComponent implements OnInit {
         this.getTalleres();
         this.limpiar();
         this.btn1 = true;
+        this.removerClase();
+        document.getElementById("titulo").innerHTML = "Agregar Taller";
+        
       });
   }
 
@@ -85,14 +92,34 @@ export class TalleresComponent implements OnInit {
   }
 
   public borrarTaller(id: number) {
+    document.getElementById("titulo").innerHTML = "Eliminar Taller";
     this.limpiar();
     this.btn3 = true;
     this.btn4 = true;
     this.getTaller(id);
+    this.añadirClase();
+
   }
 
   public cancelar() {
     this.limpiar();
+    document.getElementById("titulo").innerHTML = "Agregar Taller";
     this.btn1 = true;
+    this.removerClase();
   }
+public añadirClase(){
+
+  document.getElementById("nombre").classList.add("ff")
+  document.getElementById("detalle").classList.add("ff")
+  document.getElementById("numhoras").classList.add("ff")
+  document.getElementById("cupos").classList.add("ff")
+ 
+}
+public removerClase(){
+  document.getElementById("nombre").classList.remove("ff")
+  document.getElementById("detalle").classList.remove("ff")
+  document.getElementById("numhoras").classList.remove("ff")
+  document.getElementById("cupos").classList.remove("ff")
+}
+ 
 }
