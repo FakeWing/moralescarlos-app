@@ -1,20 +1,107 @@
-<div *ngIf="talleres">
-        <select class='select-option' [(ngModel)]="selected"
-        (change)='onOptionsSelected($event)'>
-        
-      <option #opt class='option'  *ngFor='let taller of talleres' 
-      [value]="taller.numtaller">{{taller.nombre}}</option>
+<div class="row bg-dark">
+   <div class="col-md-8">
+      <div *ngIf="talleres">
+         
+         <select class='select-option form-control my-4' [(ngModel)]="selected" (change)='onOptionsSelected($event)' >
+               <option [ngValue]="null" hidden selected disabled>Seleccione un Taller</option>
+            <option #opt class='option' *ngFor='let taller of talleres' [value]="taller.numtaller" > 
+               {{taller.nombre}}</option>
 
-   </select>
+         </select></div>
 
-   
+   </div>
+   <div class="col-md-4">
+      <button *ngIf="btnM" (click)="matricular(selected)" class="btn btn-lg btn-success form-control my-4 " data-toggle="modal" data-target="#formulario"
+          data-backdrop="static" data-keyboard="false">Matricular Alumno</button>
+   </div>
 
 </div>
 
+
+
+<div class="mt-4">
+   <div *ngIf="matriculas">
+      <table class="table table-dark table-bordered table-striped">
+         <thead>
+            <tr>
+               <th>Num. Matricula</th>
+               <th>Rut</th>
+               <th>Paterno</th>
+               <th>Materno</th>
+               <th>Nombre</th>
+               <th>Email</th>
+               <th>Desmatricular</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let matricula of matriculas">
+               <td>{{matricula.nummat}}</td>
+               <td>{{matricula.rut}}-{{matricula.dv}}</td>
+               <td>{{matricula.paterno}}</td>
+               <td>{{matricula.materno}}</td>
+               <td>{{matricula.nombre}}</td>
+               <td>{{matricula.email}}</td>
+               <td>
+
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
 <div *ngIf="selected">
- <div *ngIf="taller"></div>  
+   <div id="formulario" class="modal fade text-white" role="dialog" tabindex="-1" aria-hidden="true"
+      aria-labelledby="modalLabel" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content bg-dark">
+            <div class="modal-header">
+               <h5 class="modal-title" id="modalLabel"></h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="close"></button>
+                  <span aria-hidden="true">&times;</span>
+            </div>
+            <div class="modal-body">
 
-    
-    
+               <form id="frm" name="frm">
+                  <label for="rut">Rut</label>
 
+                  <div class="form-row">
+                     <input [(ngModel)]="nuevaMatricula.nummat" id="nummat" type="hidden" value="0">
+                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"><input [(ngModel)]="nuevaMatricula.rut" class="form-control" id="rut" required
+                           value="" name="rut" type="number"></div><label>-</label>
+                     <div class="col-sm col-xs col-lg "><input [(ngModel)]="nuevaMatricula.dv" class="form-control" id="dv" value="" name="dv" required
+                           type="text"></div>
+
+                  </div>
+                  <div class="form-row">
+                     <label for="paterno">A. Paterno</label>
+                     <input [(ngModel)]="nuevaMatricula.paterno" class="form-control" id="paterno" required value="" name="paterno" type="text">
+
+
+                  </div>
+                  <div class="form-row">
+                     <label for="materno">A. Materno</label>
+                     <input [(ngModel)]="nuevaMatricula.materno" class="form-control" id="materno" required value="" name="materno" type="text">
+
+
+                  </div>
+                  <div class="form-row">
+                     <label for="nombre">Nombre</label>
+                     <input [(ngModel)]="nuevaMatricula.nombre" class="form-control" id="nombre" required value="" name="nombre" type="text">
+
+
+                  </div>
+                  <div class="form-row">
+                     <label for="email">E-mail</label>
+                     <input [(ngModel)]="nuevaMatricula.email" class="form-control" required id="email" value="" name="email" type="email">
+
+
+                  </div>
+                  <br>
+                  <div class="form-row">
+                     <button (click)="postMatricula(); getMatriculas(selected)" type="button" class="btn btn-success form-control" data-toggle="modal" data-target="#formulario">Matricular</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>

@@ -41,17 +41,19 @@ export class TalleresComponent implements OnInit {
     tallerObservable.subscribe(tallerObtenido => {
       this.nuevoTaller = tallerObtenido;
       this.getTalleres();
-      this.nuevoTaller = new TalleresClase;
+      this.nuevoTaller = new TalleresClase();
     });
   }
 
   public putTaller(id: number) {
-    var tallerObservable = this.apiServicio.putLibro(id, this.taller);
+    var tallerObservable = this.apiServicio.putTaller(id, this.nuevoTaller);
     tallerObservable.subscribe(
       tallerObtenido => {
-        this.taller = tallerObtenido;
+        this.nuevoTaller = tallerObtenido;
         this.limpiar();
+        this.getTalleres();
         this.btn1 = true;
+
 
       });
   }
